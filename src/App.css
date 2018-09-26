@@ -18,6 +18,30 @@
   vertical-align: middle;
 }
 
+#user-display {
+  margin-top: 20px;
+}
+
+#user-display img {
+  width: 100%;
+}
+
+#left-content {
+  font-size: 14px;
+  width: 30%;
+  display: inline-block;
+}
+
+#right-content {
+  vertical-align: top;
+  width: 70%;
+  display: inline-block;
+}
+
+#right-content a {
+  font-size: 10px;
+}
+
 #search-field {
   margin-top: 10px;
   -webkit-appearance: none;
