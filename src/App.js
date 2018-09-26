@@ -28,27 +28,25 @@ class App extends Component {
     return res;
   }
 
-  handleUpdateSearchField = search => {
+  updateUser = search => {
+    search === '' ? this.setState(prevState => ({...prevState, user: null})) :
+    fetch('https://api.github.com/users/' + search)
+    .then(this.handleErrors)
+    .then(res => res.json())
+    .then(res => this.setState(prevState => {
+      return {
+        ...prevState,
+        user: res
+      }
+    }))
+    .catch(error => alert("Please enter a valid GitHub username"))
+  }
 
-    const updateUser = search => {
-      search === '' ? this.setState(prevState => ({...prevState, user: null})) :
-      fetch('https://api.github.com/users/' + search)
-      .then(this.handleErrors)
-      .then(res => res.json())
-      .then(res => this.setState(prevState => {
-        return {
-          ...prevState,
-          user: res
-        }
-      }))
-      .catch(error => alert("Please enter a valid GitHub username"))
-    }
+  handleUpdateSearchField = search => {
 
     clearTimeout(this.timeout)
     this.updateSearchField(search)
-      this.timeout = setTimeout(function() {
-        updateUser(search)
-   }, 500);
+      this.timeout = setTimeout(() => this.updateUser(this.state.searchField), 500);
  }
 
   render() {

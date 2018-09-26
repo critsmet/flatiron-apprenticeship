@@ -14,8 +14,9 @@ export default class UserDisplay extends React.Component {
     this.fetchUserRepos()
   }
 
-  componentDidUpdate(){
-    this.fetchUserRepos()
+  componentDidUpdate(prevProps){
+    console.log(this.props.user !== prevProps.user)
+    this.props.user !== prevProps.user && this.fetchUserRepos()
   }
 
   render() {
