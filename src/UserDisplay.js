@@ -15,7 +15,6 @@ export default class UserDisplay extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-    console.log(this.props.user !== prevProps.user)
     this.props.user !== prevProps.user && this.fetchUserRepos()
   }
 
@@ -37,7 +36,7 @@ export default class UserDisplay extends React.Component {
             {user.name && <div>{user.name}<br/><br/></div>}
             {user.bio && <div>{user.bio}<br/><br/></div>}
             {user.location && <div>{user.location}<br/><br/></div>}
-            <a href={"http://" + user.blog}>{user.blog}</a>
+            {user.blog && <a href={"http://" + user.blog}>{user.blog}</a>}
           </div>
         </div>
         <div id="right-content">
