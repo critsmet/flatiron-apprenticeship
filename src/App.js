@@ -9,17 +9,6 @@ class App extends Component {
     searchField: ''
     }
 
-  updateUser = search => {
-    fetch('http://www.api.github.com/users/' + search)
-    .then(res => res.json())
-    .then(res => this.setState(prevState => {
-      return {
-        ...prevState,
-        user: res.data
-      }
-    }))
-  }
-
   updateSearchField = search => {
     this.setState(prevState => {
       return {
@@ -32,10 +21,22 @@ class App extends Component {
   timeout = null
 
   handleUpdateSearchField = search => {
+
+    const updateUser = search => {
+      fetch('https://api.github.com/users/' + search)
+      .then(res => res.json())
+      .then(res => this.setState(prevState => {
+        return {
+          ...prevState,
+          user: res.data
+        }
+      }))
+    }
+
     clearTimeout(this.timeout)
     this.updateSearchField(search)
       this.timeout = setTimeout(function() {
-        this.updateUser(search)
+        updateUser(search)
    }, 500);
   }
 
